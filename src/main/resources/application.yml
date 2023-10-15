@@ -12,6 +12,5 @@ spring:
     hibernate:
       ddl-auto: none
 
-# This will create table automatically in your database
 server:
   port: 8082
