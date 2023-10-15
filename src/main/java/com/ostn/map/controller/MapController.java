@@ -3,6 +3,7 @@ package com.ostn.map.controller;
 import com.ostn.map.entity.MapDetails;
 import com.ostn.map.services.MapDetailsService;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/ostn/v1")
+@Slf4j
 public class MapController {
 
     private final MapDetailsService mapDetailsService;
@@ -24,8 +26,9 @@ public class MapController {
 
     @PostMapping("/map")
     public List<MapDetails> addNewMap(@RequestBody List<MapDetails> mapDetails) {
-        System.out.println(mapDetailsService.addNewMap(mapDetails));
-        return mapDetailsService.addNewMap(mapDetails);
+        List<MapDetails> addedMaps = mapDetailsService.addNewMap(mapDetails);
+        log.info("Added maps {}", addedMaps);
+        return addedMaps;
     }
 
     @GetMapping(value = "/image/{id}", produces = MediaType.IMAGE_PNG_VALUE)
@@ -69,12 +72,11 @@ public class MapController {
     }
 
     @GetMapping(value = "/image/{buildingId}/{floorId}", produces = MediaType.IMAGE_PNG_VALUE)
-    public void generateFloorMapImage(@PathVariable Long buildingId,@PathVariable Long floorId, HttpServletResponse response) throws IOException {
+    public void generateFloorMapImage(@PathVariable Long buildingId, @PathVariable Long floorId, HttpServletResponse response) throws IOException {
 
-        System.out.println(buildingId);
-        System.out.println(floorId);
+        log.info("Generating floor map image for building id : {}, floord id {}", buildingId, floorId);
         MapDetails mapDetails = mapDetailsService.getMapByFloorIdAndBuildingId(buildingId,floorId);
-        System.out.println(mapDetails);
+        log.info("Map details retrieved {}", mapDetails);
         int width = Math.toIntExact(mapDetails.getAxisCount()); // Set the image width
         // Create a BufferedImage
         BufferedImage image = new BufferedImage(width*10, width*10, BufferedImage.TYPE_INT_RGB);
