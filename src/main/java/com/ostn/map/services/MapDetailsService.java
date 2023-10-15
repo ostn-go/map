@@ -5,6 +5,7 @@ import com.ostn.map.repository.MapDetailsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -12,11 +13,15 @@ public class MapDetailsService {
 
     @Autowired
     private MapDetailsRepository mapDetailsRepository;
-    public MapDetails addNewMap(MapDetails mapDetails) {
-        return mapDetailsRepository.save(mapDetails);
+    public List<MapDetails> addNewMap(List<MapDetails> mapDetails) {
+        return mapDetailsRepository.saveAll(mapDetails);
     }
 
     public Optional<MapDetails> getMap(Long id) {
         return mapDetailsRepository.findById(id);
+    }
+
+    public MapDetails getMapByFloorIdAndBuildingId(Long buildingId, Long floorId) {
+        return mapDetailsRepository.findByBuildingIdAndFloorId(buildingId,floorId);
     }
 }

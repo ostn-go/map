@@ -6,26 +6,38 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "map_details")
+@Table(name = "map_details",
+        indexes = {
+        @Index(name = "BuildingFloorIdIndex", columnList = "buildingId, floorId")})
 public class MapDetails {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private Long buildingId;
+
+    private Long floorId;
+
     private List<Integer> map;
     private Long axisCount;
 
     public MapDetails() {
     }
 
-    public MapDetails(Long buildingId, List<Integer> map, Long axisCount) {
+    public MapDetails(Long id, Long buildingId, Long floorId, List<Integer> map, Long axisCount) {
+        this.id = id;
         this.buildingId = buildingId;
+        this.floorId = floorId;
         this.map = map;
         this.axisCount = axisCount;
     }
 
-    public MapDetails(List<Integer> map, Long axisCount) {
-        this.map = map;
-        this.axisCount = axisCount;
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Long getBuildingId() {
@@ -34,6 +46,14 @@ public class MapDetails {
 
     public void setBuildingId(Long buildingId) {
         this.buildingId = buildingId;
+    }
+
+    public Long getFloorId() {
+        return floorId;
+    }
+
+    public void setFloorId(Long floorId) {
+        this.floorId = floorId;
     }
 
     public List<Integer> getMap() {
@@ -51,13 +71,5 @@ public class MapDetails {
     public void setAxisCount(Long axisCount) {
         this.axisCount = axisCount;
     }
-
-    @Override
-    public String toString() {
-        return "MapDetails{" +
-                "buildingId=" + buildingId +
-                ", map=" + map +
-                ", axisCount=" + axisCount +
-                '}';
-    }
 }
+
