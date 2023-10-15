@@ -11,8 +11,10 @@ import java.util.List;
 @Service
 public class LabelDetailsService {
 
-    @Autowired
-    private LabelDetailsRepository labelDetailsRepository;
+    private final LabelDetailsRepository labelDetailsRepository;
+    public LabelDetailsService(LabelDetailsRepository labelDetailsRepository) {
+        this.labelDetailsRepository = labelDetailsRepository;
+    }
 
     public List<LabelDetails> addLabels(List<LabelDetails> labelDetails) {
         return labelDetailsRepository.saveAll(labelDetails);

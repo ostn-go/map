@@ -1,6 +1,6 @@
 package com.ostn.map.model;
 
-public class Coordinates {
+public class Coordinate {
     private double x;
     private double y;
 
@@ -20,7 +20,7 @@ public class Coordinates {
         this.y = y;
     }
 
-    public Coordinates(double x, double y) {
+    public Coordinate(double x, double y) {
         this.x = x;
         this.y = y;
     }

@@ -9,13 +9,13 @@ import java.util.Optional;
 
 @Service
 public class MapDetailsService {
-
-    @Autowired
-    private MapDetailsRepository mapDetailsRepository;
+    private final MapDetailsRepository mapDetailsRepository;
+    public MapDetailsService(MapDetailsRepository mapDetailsRepository) {
+        this.mapDetailsRepository = mapDetailsRepository;
+    }
     public MapDetails addNewMap(MapDetails mapDetails) {
         return mapDetailsRepository.save(mapDetails);
     }
-
     public Optional<MapDetails> getMap(Long id) {
         return mapDetailsRepository.findById(id);
     }

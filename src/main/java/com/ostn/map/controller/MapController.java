@@ -16,15 +16,24 @@ import java.io.IOException;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/ostn")
+@RequestMapping("/ostn/v1")
 public class MapController {
-    @Autowired
-    private MapDetailsService mapDetailsService;
+
+    private final MapDetailsService mapDetailsService;
+
+    public MapController(MapDetailsService mapDetailsService) {
+        this.mapDetailsService = mapDetailsService;
+    }
 
     @PostMapping("/map")
     public MapDetails addNewMap(@RequestBody MapDetails mapDetails) {
         System.out.println(mapDetails.toString());
         return mapDetailsService.addNewMap(mapDetails);
+    }
+
+    @GetMapping("/get/{id}")
+    public MapDetails getMapById(@PathVariable Long id) {
+        return mapDetailsService.getMap(id).get();
     }
 
     @GetMapping(value = "/image/{id}", produces = MediaType.IMAGE_PNG_VALUE)

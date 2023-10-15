@@ -1,11 +1,13 @@
 package com.ostn.map.entity;
 
-import com.ostn.map.model.Coordinates;
+
 import jakarta.annotation.Nonnull;
 import jakarta.persistence.*;
+import lombok.ToString;
 
 @Entity
 @Table(name = "label_details")
+@ToString
 public class LabelDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

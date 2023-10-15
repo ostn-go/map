@@ -1,25 +1,25 @@
 package com.ostn.map.controller;
 
-import com.ostn.map.entity.BleDetails;
+
 import com.ostn.map.entity.LabelDetails;
-import com.ostn.map.entity.MapDetails;
-import com.ostn.map.services.BleDetailsService;
 import com.ostn.map.services.LabelDetailsService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
-@RequestMapping("/ostn/label")
+@RequestMapping("/ostn/v1/label")
+@Slf4j
 public class LabelController {
+    private final LabelDetailsService labelDetailsService;
+    public LabelController(LabelDetailsService labelDetailsService) {
+        this.labelDetailsService = labelDetailsService;
+    }
 
-    @Autowired
-    private LabelDetailsService labelDetailsService;
-    @PostMapping("/add")
+    @PostMapping("/")
     public List<LabelDetails> addLabels(@RequestBody List<LabelDetails> labelDetails) {
-        System.out.println(labelDetails.toString());
+        log.info("Label details {} ", labelDetails);
         return labelDetailsService.addLabels(labelDetails);
     }
 
