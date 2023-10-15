@@ -29,17 +29,13 @@ public class LabelDetails {
 
     private String iconName;
 
-    public LabelDetails() {
-    }
+    @Nonnull
+    private Long labelId;
+    @Nonnull
+    private Long floorId;
+    private String description;
 
-    public LabelDetails(Long id, Long buildingId, Long xCoordinate, Long yCoordinate, Long floor, String labelName, String iconName) {
-        this.id = id;
-        this.buildingId = buildingId;
-        this.xCoordinate = xCoordinate;
-        this.yCoordinate = yCoordinate;
-        this.floor = floor;
-        this.labelName = labelName;
-        this.iconName = iconName;
+    public LabelDetails() {
     }
 
     public Long getId() {
@@ -50,27 +46,30 @@ public class LabelDetails {
         this.id = id;
     }
 
+    @Nonnull
     public Long getBuildingId() {
         return buildingId;
     }
 
-    public void setBuildingId(Long buildingId) {
+    public void setBuildingId(@Nonnull Long buildingId) {
         this.buildingId = buildingId;
     }
 
+    @Nonnull
     public Long getxCoordinate() {
         return xCoordinate;
     }
 
-    public void setxCoordinate(Long xCoordinate) {
+    public void setxCoordinate(@Nonnull Long xCoordinate) {
         this.xCoordinate = xCoordinate;
     }
 
+    @Nonnull
     public Long getyCoordinate() {
         return yCoordinate;
     }
 
-    public void setyCoordinate(Long yCoordinate) {
+    public void setyCoordinate(@Nonnull Long yCoordinate) {
         this.yCoordinate = yCoordinate;
     }
 
@@ -82,11 +81,12 @@ public class LabelDetails {
         this.floor = floor;
     }
 
+    @Nonnull
     public String getLabelName() {
         return labelName;
     }
 
-    public void setLabelName(String labelName) {
+    public void setLabelName(@Nonnull String labelName) {
         this.labelName = labelName;
     }
 
@@ -96,5 +96,31 @@ public class LabelDetails {
 
     public void setIconName(String iconName) {
         this.iconName = iconName;
+    }
+
+    @Nonnull
+    public Long getLabelId() {
+        return labelId;
+    }
+
+    public void setLabelId(@Nonnull Long labelId) {
+        this.labelId = labelId;
+    }
+
+    @Nonnull
+    public Long getFloorId() {
+        return floorId;
+    }
+
+    public void setFloorId(@Nonnull Long floorId) {
+        this.floorId = floorId;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
