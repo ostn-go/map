@@ -1,9 +1,11 @@
 package com.ostn.map.entity;
 
 import jakarta.persistence.*;
+import lombok.ToString;
 
 @Entity
 @Table(name = "ble_details")
+@ToString
 public class BleDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -75,14 +77,5 @@ public class BleDetails {
         this.buildingId = buildingId;
     }
 
-    @Override
-    public String toString() {
-        return "BleDetails{" +
-                "id=" + id +
-                ", mac_address='" + mac_address + '\'' +
-                ", x_coordinate=" + x_coordinate +
-                ", y_coordinate=" + y_coordinate +
-                ", buildingId=" + buildingId +
-                '}';
-    }
+
 }

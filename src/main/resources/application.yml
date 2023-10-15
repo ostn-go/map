@@ -1,0 +1,16 @@
+spring:
+  h2:
+    console.enabled: true
+  datasource:
+    username: sa
+    password:
+
+    url: jdbc:h2:mem:test_db
+    driverClassName: org.h2.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: none
+
+server:
+  port: 8082
