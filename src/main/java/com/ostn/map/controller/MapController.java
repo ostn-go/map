@@ -1,11 +1,8 @@
 package com.ostn.map.controller;
 
-import com.ostn.map.entity.BleDetails;
 import com.ostn.map.entity.MapDetails;
-import com.ostn.map.services.BleDetailsService;
 import com.ostn.map.services.MapDetailsService;
 import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,7 +11,6 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/ostn/v1")
@@ -27,14 +23,9 @@ public class MapController {
     }
 
     @PostMapping("/map")
-    public java.util.List<MapDetails> addNewMap(@RequestBody List<MapDetails> mapDetails) {
+    public List<MapDetails> addNewMap(@RequestBody List<MapDetails> mapDetails) {
         System.out.println(mapDetailsService.addNewMap(mapDetails));
         return mapDetailsService.addNewMap(mapDetails);
-    }
-
-    @GetMapping("/get/{id}")
-    public MapDetails getMapById(@PathVariable Long id) {
-        return mapDetailsService.getMap(id).get();
     }
 
     @GetMapping(value = "/image/{id}", produces = MediaType.IMAGE_PNG_VALUE)
