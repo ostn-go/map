@@ -21,6 +21,10 @@ public class MapDetailsService {
         return mapDetailsRepository.findById(id);
     }
 
+    public List<MapDetails> getMapByBuildingId(Long buildingId) {
+        return mapDetailsRepository.findByBuildingId(buildingId);
+    }
+
     public MapDetails getMapByFloorIdAndBuildingId(Long buildingId, Long floorId) {
         return mapDetailsRepository.findByBuildingIdAndFloorId(buildingId,floorId);
     }

@@ -1,6 +1,5 @@
 package com.ostn.map.entity;
 
-import com.ostn.map.model.Coordinates;
 import jakarta.annotation.Nonnull;
 import jakarta.persistence.*;
 

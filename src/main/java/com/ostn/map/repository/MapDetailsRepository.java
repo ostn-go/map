@@ -10,4 +10,7 @@ import java.util.List;
 @Repository
 public interface MapDetailsRepository extends JpaRepository<MapDetails, Long> {
    MapDetails findByBuildingIdAndFloorId(Long buildingId,Long floorId);
+
+   List<MapDetails> findByBuildingId(Long buildingId);
+
 }
